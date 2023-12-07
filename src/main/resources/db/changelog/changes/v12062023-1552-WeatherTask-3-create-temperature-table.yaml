@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - preConditions:
+      - or:
+          - dbms:
+              type: postgresql
+          - dbms:
+              type: h2
+  - changeSet:
+      id: "WeatherTask-2-create-temperature-table"
+      author: "Kateryna Siebova"
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: temperature
+      changes:
+        - createTable:
+            tableName: temperature
+            columns:
+              - column:
+                  name: weather_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_weather_id
+                    referencedTableName: weather
+                    referencedColumnNames: id
+                    onDelete: CASCADE
+                    onUpdate: CASCADE
+              - column:
+                  name: value
+                  type: numeric(3, 1)

@@ -1,0 +1,38 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: weathertask
+  datasource:
+    url: jdbc:postgresql://${HOST}:5432/${POSTGRES_DATABASE}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driver-Class-Name: org.postgresql.Driver
+    hikari:
+      leak-detection-threshold: 30000
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    enabled: true
+#    default-schema: ${POSTGRES_SCHEMA}
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    access: 3600000     #1hour
+    refresh: 2592000000 #30days
+
+springdoc:
+  override-with-generic-response: false

@@ -1,0 +1,30 @@
+server:
+  forward-headers-strategy: framework
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: customer-service
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: H2
+    password:
+    hikari:
+      leak-detection-threshold: 30000
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+        hbm2ddl.auto: create-drop
+  liquibase:
+    enabled: false
+
+security:
+  jwt:
+    header: Authorization
+    token-prefix: "Bearer "
+    token-type: JWT
+    secret-key: c2pkZmdranNscnRwZmdzZGtmZ2psc2tyanRbcGZnZGZrZ2xqZWxrcmpwb2dpcHNka2dhbHNramR0bGtqbGtqZ2xkZmdzcnRlcw==
+    refresh-token:
+      expiration: 2592000000 #30days

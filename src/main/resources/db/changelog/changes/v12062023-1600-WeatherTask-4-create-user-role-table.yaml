@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - preConditions:
+      - or:
+          - dbms:
+              type: postgresql
+          - dbms:
+              type: h2
+  - changeSet:
+      id: "WeatherTask-4-create-user-role-table"
+      author: "Kateryna Siebova"
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: user_role
+      changes:
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role
+                  type: character varying(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+            primaryKey:
+              - columnNames:
+                  - users_id
+                  - role
+            foreignKeyConstraints:
+              - foreignKeyConstraint:
+                  baseColumnNames: user_id
+                  baseTableName: users
+                  referencedColumnNames: id
+                  referencedTableName: users
+                  onDelete: cascade
+                  onUpdate: noAction
+
+
+

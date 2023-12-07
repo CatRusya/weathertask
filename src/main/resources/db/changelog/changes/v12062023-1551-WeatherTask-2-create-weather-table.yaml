@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - preConditions:
+      - or:
+          - dbms:
+              type: postgresql
+          - dbms:
+              type: h2
+  - changeSet:
+      id: "WeatherTask-3-create-weather-table"
+      author: "Kateryna Siebova"
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: weather
+      changes:
+        - createTable:
+            tableName: weather
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp
+                constraints:
+                  nullable: false
+              - column:
+                  name: lat
+                  type: numeric(6, 4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lon
+                  type: numeric(6, 4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: character varying(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: character varying(255)
+                  constraints:
+                    nullable: false
+
+
+
+
+
