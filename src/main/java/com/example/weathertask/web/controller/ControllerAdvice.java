@@ -3,7 +3,6 @@ package com.example.weathertask.web.controller;
 import com.example.weathertask.domain.exception.AccessDeniedException;
 import com.example.weathertask.domain.exception.ExceptionBody;
 import com.example.weathertask.domain.exception.InvalidRequestException;
-import com.example.weathertask.domain.exception.ResourceMappingException;
 import com.example.weathertask.domain.exception.ResourceNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -24,13 +23,6 @@ public class ControllerAdvice {
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ExceptionBody handleResourceNotFound(
       ResourceNotFoundException e) {
-    return new ExceptionBody(e.getMessage());
-  }
-
-  @ExceptionHandler(ResourceMappingException.class)
-  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  public ExceptionBody handleResourceMapping(
-      ResourceMappingException e) {
     return new ExceptionBody(e.getMessage());
   }
 
