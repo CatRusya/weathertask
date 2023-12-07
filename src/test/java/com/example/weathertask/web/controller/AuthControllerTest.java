@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureWebTestClient
 @RequiredArgsConstructor
-public class AuthControllerTest extends AbstractTest {
+class AuthControllerTest extends AbstractTest {
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
