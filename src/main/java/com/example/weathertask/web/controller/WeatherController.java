@@ -66,6 +66,4 @@ public class WeatherController {
         return new ResponseEntity<>(weatherMapper.toDto(weatherService.getRecordById(id)),
                 HttpStatus.OK);
     }
-
-
 }

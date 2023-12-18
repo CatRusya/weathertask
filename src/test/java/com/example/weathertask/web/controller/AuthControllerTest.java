@@ -1,4 +1,4 @@
-package com.example.weathertask.controller;
+package com.example.weathertask.web.controller;
 
 import com.example.weathertask.AbstractTest;
 import com.example.weathertask.web.dto.auth.JwtRequest;
