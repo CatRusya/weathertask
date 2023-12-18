@@ -5,15 +5,16 @@ import com.example.weathertask.web.dto.validation.OnUpdate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.List;
 
 
 @Data
+@Builder
 @Schema(description = "Weather DTO")
 public class WeatherDto {
 
@@ -47,7 +48,6 @@ public class WeatherDto {
 
     @NotNull(message = "Must be not null.",
             groups = {OnCreate.class, OnUpdate.class})
-//    private List<Double> temperatures;
     private Double [] temperatures;
 }
 

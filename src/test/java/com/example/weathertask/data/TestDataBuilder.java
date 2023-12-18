@@ -1,12 +1,11 @@
-package com.example.weathertask.controller.data;
+package com.example.weathertask.data;
 
 
-import com.andersen.techtask.dto.CityDto;
-import com.andersen.techtask.dto.CountryDto;
-import com.andersen.techtask.entity.Role;
-import com.andersen.techtask.entity.User;
-import com.andersen.techtask.service.UserService;
-import com.andersen.techtask.service.props.JwtProperties;
+import com.example.weathertask.domain.user.Role;
+import com.example.weathertask.domain.user.User;
+import com.example.weathertask.service.UserService;
+import com.example.weathertask.web.dto.weather.WeatherDto;
+import com.example.weathertask.web.security.props.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -15,8 +14,8 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -38,27 +37,6 @@ public class TestDataBuilder {
     private final UserService userService;
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-    public List<CountryDto> getAllCountries() {
-
-        return Arrays.asList(
-                new CountryDto(2L, "Monaco", null),
-                new CountryDto(104L, "Japan", null)
-        );
-    }
-    public List<CityDto> getAllCities() {
-
-        return Arrays.asList(
-                new CityDto(1L,"Tokyo","Japan",null),
-                new CityDto(2L, "Osaka", "Japan", null)
-        );
-    }
-
-    public List <CityDto>getCity() {
-        return   Arrays.asList(
-         new CityDto(1L,"Tokyo","Japan",null));
-    }
-
 
     public String getValidTestAccessToken(String username) {
         User user = userService.getByUsername(username);
@@ -94,5 +72,16 @@ public class TestDataBuilder {
         return roles.stream()
                 .map(Enum::name)
                 .collect(Collectors.toList());
+    }
+
+    public WeatherDto createWeatherDto() {
+        return WeatherDto.builder()
+                .id(5L)
+                .date(LocalDate.of(2023,12,07))
+                .lat(33.4484)
+                .lon(-112.0740)
+                .city("Phoenix")
+                .state("AZ")
+                .build();
     }
 }

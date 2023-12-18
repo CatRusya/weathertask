@@ -1,4 +1,4 @@
-package com.example.weathertask.controller;
+package com.example.weathertask;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
