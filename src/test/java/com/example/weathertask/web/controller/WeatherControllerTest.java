@@ -105,7 +105,7 @@ class WeatherControllerTest extends AbstractTest {
                 .getContentAsString();
 
         WeatherDto actualWeather= objectMapper.readValue(contentAsString,
-                new TypeReference<WeatherDto>() {});
+                new TypeReference<>() {});
         assertEquals(expectedWeather, actualWeather);
     }
 
