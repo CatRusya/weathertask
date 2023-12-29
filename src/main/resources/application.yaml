@@ -26,7 +26,7 @@ spring:
         format_sql: true
   liquibase:
     enabled: true
-#    default-schema: ${POSTGRES_SCHEMA}
+
 
 security:
   jwt:

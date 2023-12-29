@@ -28,4 +28,4 @@ databaseChangeLog:
                     onUpdate: CASCADE
               - column:
                   name: value
-                  type: numeric(3, 1)
+                  type: numeric(4, 1)

@@ -31,7 +31,7 @@ databaseChangeLog:
                   nullable: false
               - column:
                   name: lat
-                  type: numeric(6, 4)
+                  type: numeric(7, 4)
                   constraints:
                     nullable: false
               - column:
